@@ -144,7 +144,7 @@ func (i *image) Attr(name string) (starlark.Value, error) {
 		name := i.ref.DockerReference()
 		return starlark.String(reference.Path(name)), nil
 	case "tags":
-		return starlark.NewBuiltin("tags", i.builtinVersionFunc), nil
+		return starlark.NewBuiltin("tags", i.builtinTagsFunc), nil
 	case "version":
 		return starlark.NewBuiltin("version", i.builtinVersionFunc), nil
 	}
