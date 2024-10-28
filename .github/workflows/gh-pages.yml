@@ -5,9 +5,9 @@ on:
       - created
 jobs:
   gh-pages:
-    env: 
+    env:
       GOPATH: ${{ github.workspace }}
-      WORKING_PATH: ${{ github.workspace }}/src/github.com/${{ github.repository }} 
+      WORKING_PATH: ${{ github.workspace }}/src/github.com/${{ github.repository }}
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -27,7 +27,7 @@ jobs:
         extended: true
 
     - name: Setup Outline
-      run: go get github.com/mcuadros/outline 
+      run: go get github.com/remotely-works/outline
 
     - name: Hugo Build
       run: make hugo-build

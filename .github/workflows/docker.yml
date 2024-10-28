@@ -13,16 +13,16 @@ jobs:
     - name: Build image
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
-        image: mcuadros/ascode
+        image: remotelyplatform/ascode
         registry: docker.io
-        username: mcuadros
+        username: remotelyplatform
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Tag image
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
-        image: mcuadros/ascode
+        image: remotelyplatform/ascode
         registry: docker.io
         tag: latest
-        username: mcuadros
+        username: remotelyplatform
         password: ${{ secrets.DOCKER_PASSWORD }}

@@ -5,22 +5,21 @@ import (
 
 	"github.com/hashicorp/terraform/plugin"
 	"github.com/hashicorp/terraform/plugin/discovery"
-	"github.com/mcuadros/ascode/terraform"
+	"github.com/remotely-works/ascode/terraform"
 	"go.starlark.net/starlark"
 )
 
 // BuiltinProvisioner returns a starlak.Builtin function capable of instantiate
 // new Provisioner instances.
 //
-//   outline: types
-//     functions:
-//       provisioner(type) Provisioner
-//         Instantiates a new Provisioner
+//	outline: types
+//	  functions:
+//	    provisioner(type) Provisioner
+//	      Instantiates a new Provisioner
 //
-//         params:
-//           type string
-//             Provisioner type.
-//
+//	      params:
+//	        type string
+//	          Provisioner type.
 func BuiltinProvisioner() starlark.Value {
 	return starlark.NewBuiltin("provisioner", MakeProvisioner)
 }
@@ -54,24 +53,23 @@ func MakeProvisioner(
 
 // Provisioner represents a Terraform provider of a specif type.
 //
-//   outline: types
-//     types:
-//       Provisioner
-//         Provisioner represents a Terraform provider of a specif type. As
-//         written in the terraform documentation: "*Provisioners are a Last Resort*"
+//	outline: types
+//	  types:
+//	    Provisioner
+//	      Provisioner represents a Terraform provider of a specif type. As
+//	      written in the terraform documentation: "*Provisioners are a Last Resort*"
 //
-//         fields:
-//           __kind__ string
-//             Kind of the provisioner. Fixed value `provisioner`
-//           __type__ string
-//             Type of the resource. Eg.: `aws_instance
-//           <argument> <scalar>
-//             Arguments defined by the provisioner schema, thus can be of any
-//             scalar type.
-//           <block> Resource
-//             Blocks defined by the provisioner schema, thus are nested resources,
-//             containing other arguments and/or blocks.
-//
+//	      fields:
+//	        __kind__ string
+//	          Kind of the provisioner. Fixed value `provisioner`
+//	        __type__ string
+//	          Type of the resource. Eg.: `aws_instance
+//	        <argument> <scalar>
+//	          Arguments defined by the provisioner schema, thus can be of any
+//	          scalar type.
+//	        <block> Resource
+//	          Blocks defined by the provisioner schema, thus are nested resources,
+//	          containing other arguments and/or blocks.
 type Provisioner struct {
 	provisioner *plugin.GRPCProvisioner
 	meta        discovery.PluginMeta

@@ -143,5 +143,5 @@ var DataFile = func(pkgdir, filename string) string {
 		return filepath.Join(testSrcdir, "net_starlark_go", pkgdir, filename)
 	}
 
-	return filepath.Join(build.Default.GOPATH, "src/github.com/mcuadros/ascode", pkgdir, filename)
+	return filepath.Join(build.Default.GOPATH, "src/github.com/remotely-works/ascode", pkgdir, filename)
 }

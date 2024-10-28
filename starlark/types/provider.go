@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mcuadros/ascode/terraform"
+	"github.com/remotely-works/ascode/terraform"
 
 	"github.com/hashicorp/terraform/plugin"
 	"github.com/hashicorp/terraform/plugin/discovery"
@@ -60,53 +60,53 @@ func MakeProvider(
 
 // Provider represents a provider as a starlark.Value.
 //
-//   outline: types
-//     types:
-//       Provider
-//         A plugin for Terraform that makes a collection of related resources
-//         available. A provider plugin is responsible for understanding API
-//         interactions with some kind of service and exposing resources based
-//         on that API.
+//	outline: types
+//	  types:
+//	    Provider
+//	      A plugin for Terraform that makes a collection of related resources
+//	      available. A provider plugin is responsible for understanding API
+//	      interactions with some kind of service and exposing resources based
+//	      on that API.
 //
-//         examples:
-//           provider.star
-//           provider_resource.star
-//             Resource instantiation from a Provider.
+//	      examples:
+//	        provider.star
+//	        provider_resource.star
+//	          Resource instantiation from a Provider.
 //
-//         fields:
-//           __version__ string
-//             Provider version
-//           __kind__ string
-//             Kind of the provider. Fixed value `provider`
-//           __type__ string
-//             Type of the resource. Eg.: `aws_instance`
-//           __name__ string
-//             Local name of the provider, if none was provided to the constructor,
-//             the name is auto-generated following the pattern `id_%s`.  At
-//             Terraform is called [`alias`](https://www.terraform.io/docs/configuration/providers.html#alias-multiple-provider-instances)
-//           __dict__ Dict
-//             A dictionary containing all set arguments and blocks of the provider.
-//           data MapSchema
-//             Data sources defined by the provider.
-//           resource MapSchema
-//             Resources defined by the provider.
-//           <argument> <scalar>
-//             Arguments defined by the provider schema, thus can be of any
-//             scalar type.
-//           <block> Resource
-//             Blocks defined by the provider schema, thus are nested resources,
-//             containing other arguments and/or blocks.
+//	      fields:
+//	        __version__ string
+//	          Provider version
+//	        __kind__ string
+//	          Kind of the provider. Fixed value `provider`
+//	        __type__ string
+//	          Type of the resource. Eg.: `aws_instance`
+//	        __name__ string
+//	          Local name of the provider, if none was provided to the constructor,
+//	          the name is auto-generated following the pattern `id_%s`.  At
+//	          Terraform is called [`alias`](https://www.terraform.io/docs/configuration/providers.html#alias-multiple-provider-instances)
+//	        __dict__ Dict
+//	          A dictionary containing all set arguments and blocks of the provider.
+//	        data MapSchema
+//	          Data sources defined by the provider.
+//	        resource MapSchema
+//	          Resources defined by the provider.
+//	        <argument> <scalar>
+//	          Arguments defined by the provider schema, thus can be of any
+//	          scalar type.
+//	        <block> Resource
+//	          Blocks defined by the provider schema, thus are nested resources,
+//	          containing other arguments and/or blocks.
 //
-//         methods:
-//           set_prefix(enable, prefix="")
-//             If enabled, all the resource names belonging to this provider
-//             are prefixed, with the given prefix or by default the alias name.
-//             params:
-//               enable bool
-//                 if True enables the the prefix of resources.
-//               prefix string
-//                 string to be used as prefix of the resources, if None, the
-//                 provider name it's used as prefix.
+//	      methods:
+//	        set_prefix(enable, prefix="")
+//	          If enabled, all the resource names belonging to this provider
+//	          are prefixed, with the given prefix or by default the alias name.
+//	          params:
+//	            enable bool
+//	              if True enables the the prefix of resources.
+//	            prefix string
+//	              string to be used as prefix of the resources, if None, the
+//	              provider name it's used as prefix.
 type Provider struct {
 	provider *plugin.GRPCProvider
 	meta     discovery.PluginMeta
@@ -257,23 +257,22 @@ func (p *Provider) CompareSameType(op syntax.Token, yv starlark.Value, depth int
 // ResourceCollectionGroup represents a group by kind (resource or data resource)
 // of ResourceCollections for a given provider.
 //
-//   outline: types
-//     types:
-//       ResourceCollectionGroup
-//         ResourceCollectionGroup represents a group by kind (resource or data
-//         resource) of ResourceCollections for a given provider.
+//	outline: types
+//	  types:
+//	    ResourceCollectionGroup
+//	      ResourceCollectionGroup represents a group by kind (resource or data
+//	      resource) of ResourceCollections for a given provider.
 //
-//         fields:
-//           __provider__ Provider
-//             Provider of this group.
-//           __kind__ string
-//             Kind of the resources (`data` or `resource`).
-//           <resource-name> ResourceCollection
-//             Returns a ResourceCollection if the resource name is valid for
-//             the schema of the provider. The resource name should be provided
-//             without the provider prefix, `aws_instance` becomes
-//             just an `instance`.
-//
+//	      fields:
+//	        __provider__ Provider
+//	          Provider of this group.
+//	        __kind__ string
+//	          Kind of the resources (`data` or `resource`).
+//	        <resource-name> ResourceCollection
+//	          Returns a ResourceCollection if the resource name is valid for
+//	          the schema of the provider. The resource name should be provided
+//	          without the provider prefix, `aws_instance` becomes
+//	          just an `instance`.
 type ResourceCollectionGroup struct {
 	provider    *Provider
 	kind        Kind

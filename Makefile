@@ -8,11 +8,11 @@ DOCUMENTATION_REFERENCE_TEMPLATE ?= $(DOCUMENTATION_REFERENCE_PATH)/reference.md
 DOCUMENTATION_INLINE_EXAMPLES_PATH ?= starlark/types/testdata/examples
 
 RUNTIME_MODULES = \
-	github.com/mcuadros/ascode/starlark/module/docker \
-	github.com/mcuadros/ascode/starlark/module/os \
-	github.com/mcuadros/ascode/starlark/types \
-	github.com/mcuadros/ascode/starlark/module/filepath \
-	github.com/mcuadros/ascode/starlark/module/url \
+	github.com/remotely-works/ascode/starlark/module/docker \
+	github.com/remotely-works/ascode/starlark/module/os \
+	github.com/remotely-works/ascode/starlark/types \
+	github.com/remotely-works/ascode/starlark/module/filepath \
+	github.com/remotely-works/ascode/starlark/module/url \
 	github.com/qri-io/starlib/encoding/base64 \
 	github.com/qri-io/starlib/encoding/csv \
 	github.com/qri-io/starlib/encoding/json \
@@ -33,7 +33,7 @@ EXAMPLES = functions.star runtime.star
 EXAMPLES_PATH = $(BASE_PATH)/_examples
 DOCUMENTATION_EXAMPLES_PATH = $(DOCUMENTATION_PATH)/example
 
-# Build Info 
+# Build Info
 GO_LDFLAGS_CMD = go run _scripts/goldflags.go
 GO_LDFLAGS_PACKAGE = cmd
 GO_LDFLAGS_PACKAGES = \
@@ -49,7 +49,7 @@ GIT_REF_SHORT = $(shell echo $(GIT_REF) | cut -d / -f 3)
 HUGO_SITE_PATH ?= $(BASE_PATH)/_site
 HUGO_SITE_CONTENT_PATH ?= $(HUGO_SITE_PATH)/content
 HUGO_SITE_TEMPLATE_PATH ?= $(HUGO_SITE_PATH)/themes/hugo-ascode-theme
-HUGO_THEME_URL ?= https://github.com/mcuadros/hugo-ascode-theme
+HUGO_THEME_URL ?= https://github.com/remotely-works/hugo-ascode-theme
 HUGO_PARAMS_VERSION ?= $(GIT_REF_SHORT)
 export HUGO_PARAMS_VERSION
 

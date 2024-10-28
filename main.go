@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/jessevdk/go-flags"
-	"github.com/mcuadros/ascode/cmd"
+	"github.com/remotely-works/ascode/cmd"
 )
 
 var version string

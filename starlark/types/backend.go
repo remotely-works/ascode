@@ -10,8 +10,8 @@ import (
 	"github.com/hashicorp/terraform/providers"
 	"github.com/hashicorp/terraform/states"
 	"github.com/hashicorp/terraform/states/statemgr"
-	"github.com/mcuadros/ascode/terraform"
 	"github.com/qri-io/starlib/util"
+	"github.com/remotely-works/ascode/terraform"
 	"go.starlark.net/starlark"
 )
 
@@ -22,15 +22,14 @@ func init() {
 // BuiltinBackend returns a starlak.Builtin function capable of instantiate
 // new Backend instances.
 //
-//   outline: types
-//     functions:
-//       backend(type) Backend
-//         Instantiates a new [`Backend`](#backend)
+//	outline: types
+//	  functions:
+//	    backend(type) Backend
+//	      Instantiates a new [`Backend`](#backend)
 //
-//         params:
-//           type string
-//             [Backend type](https://www.terraform.io/docs/backends/types/index.html).
-//
+//	      params:
+//	        type string
+//	          [Backend type](https://www.terraform.io/docs/backends/types/index.html).
 func BuiltinBackend() starlark.Value {
 	return starlark.NewBuiltin("backend", MakeBackend)
 }
@@ -63,33 +62,33 @@ func MakeBackend(
 
 // Backend represent a Terraform Backend.
 //
-//   outline: types
-//     types:
-//       Backend
-//         The part of Terraform's core that determines how Terraform stores
-//         state and performs operations (like plan, apply, import, etc.).
-//         Terraform has multiple [backends](https://www.terraform.io/docs/backends/index.html)
-//         to choose from, which can be configured in a variety of ways.
+//	outline: types
+//	  types:
+//	    Backend
+//	      The part of Terraform's core that determines how Terraform stores
+//	      state and performs operations (like plan, apply, import, etc.).
+//	      Terraform has multiple [backends](https://www.terraform.io/docs/backends/index.html)
+//	      to choose from, which can be configured in a variety of ways.
 //
-//         fields:
-//           __kind__ string
-//             Kind of the backend. Fixed value `backend`.
-//           __type__ string
-//             Type of the backend. Eg.: `local`.
-//           __dict__ Dict
-//             A dictionary containing all the config values of the backend.
-//           <argument> <scalar>
-//             Arguments defined by the backend schema, thus can be of any
-//             scalar type.
+//	      fields:
+//	        __kind__ string
+//	          Kind of the backend. Fixed value `backend`.
+//	        __type__ string
+//	          Type of the backend. Eg.: `local`.
+//	        __dict__ Dict
+//	          A dictionary containing all the config values of the backend.
+//	        <argument> <scalar>
+//	          Arguments defined by the backend schema, thus can be of any
+//	          scalar type.
 //
-//         methods:
-//           state(module="", workspace="default") State
-//             Loads the latest state for a given module or workspace.
-//             params:
-//               module string
-//                 name of the module, empty equals to root.
-//               workspace string
-//                 backend workspace
+//	      methods:
+//	        state(module="", workspace="default") State
+//	          Loads the latest state for a given module or workspace.
+//	          params:
+//	            module string
+//	              name of the module, empty equals to root.
+//	            workspace string
+//	              backend workspace
 type Backend struct {
 	pm *terraform.PluginManager
 	b  backend.Backend
@@ -205,27 +204,27 @@ func (b *Backend) Type() string {
 // State represents a Terraform state read by a backend.
 // https://www.terraform.io/docs/state/index.html
 //
-//   outline: types
-//     types:
-//       State
-//         Terraform's cached information about your managed infrastructure
-//         and configuration. This [state](https://www.terraform.io/docs/state/index.html)
-//         is used to persistently map the same real world resources to your
-//         configuration from run-to-run, keep track of metadata, and improve
-//         performance for large infrastructures.
+//	outline: types
+//	  types:
+//	    State
+//	      Terraform's cached information about your managed infrastructure
+//	      and configuration. This [state](https://www.terraform.io/docs/state/index.html)
+//	      is used to persistently map the same real world resources to your
+//	      configuration from run-to-run, keep track of metadata, and improve
+//	      performance for large infrastructures.
 //
-//         State implements a Dict, where the first level are the providers
-//         containing the keys `data` with the data sources and `resources` with
-//         the resources.
+//	      State implements a Dict, where the first level are the providers
+//	      containing the keys `data` with the data sources and `resources` with
+//	      the resources.
 //
-//         examples:
-//           backend_local.star
-//             An example of how to print a resume of providers and resources
-//             count from the state.
+//	      examples:
+//	        backend_local.star
+//	          An example of how to print a resume of providers and resources
+//	          count from the state.
 //
-//         fields:
-//           <provider> AttrDict
-//             provider and all the resources state.
+//	      fields:
+//	        <provider> AttrDict
+//	          provider and all the resources state.
 type State struct {
 	*starlark.Dict
 	pm *terraform.PluginManager

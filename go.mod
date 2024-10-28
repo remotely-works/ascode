@@ -1,4 +1,4 @@
-module github.com/mcuadros/ascode
+module github.com/remotely-works/ascode
 
 go 1.16
 
@@ -39,4 +39,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )
 
-replace github.com/hashicorp/hcl2 => github.com/mcuadros/hcl2 v0.0.0-20190711172820-dd3dbf62a554
+replace github.com/hashicorp/hcl2 => github.com/remotely-works/hcl2 v0.0.0-20190711172820-dd3dbf62a554

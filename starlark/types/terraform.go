@@ -4,30 +4,29 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/terraform/version"
-	"github.com/mcuadros/ascode/terraform"
+	"github.com/remotely-works/ascode/terraform"
 	"go.starlark.net/starlark"
 )
 
 // Terraform is a representation of Terraform as a starlark.Value
 //
-//   outline: types
-//     types:
-//       Terraform
-//         Terraform holds all the configuration defined by a script. A global
-//         variable called `tf` contains a unique instance of Terraform.
+//	outline: types
+//	  types:
+//	    Terraform
+//	      Terraform holds all the configuration defined by a script. A global
+//	      variable called `tf` contains a unique instance of Terraform.
 //
-//         examples:
-//           tf_overview.star
+//	      examples:
+//	        tf_overview.star
 //
-//         fields:
-//           version string
-//             Terraform version.
-//           backend Backend
-//             Backend used to store the state, if None a `local` backend it's
-//             used.
-//           provider ProviderCollection
-//             Dict with all the providers defined by provider type.
-//
+//	      fields:
+//	        version string
+//	          Terraform version.
+//	        backend Backend
+//	          Backend used to store the state, if None a `local` backend it's
+//	          used.
+//	        provider ProviderCollection
+//	          Dict with all the providers defined by provider type.
 type Terraform struct {
 	b *Backend
 	p *ProviderCollection
