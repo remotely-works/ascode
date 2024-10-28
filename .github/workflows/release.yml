@@ -3,7 +3,7 @@ on:
   release:
     types:
       - created
-  
+
 jobs:
   release:
     strategy:
@@ -22,7 +22,7 @@ jobs:
     - name: Release binaries
       uses: mcuadros/go-release-action@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.ORG_GITHUB_TOKEN }}
         goos: ${{ matrix.goos }}
         goarch: amd64
-        ldflags: ${{ env.GO_LDFLAGS }} 
+        ldflags: ${{ env.GO_LDFLAGS }}
