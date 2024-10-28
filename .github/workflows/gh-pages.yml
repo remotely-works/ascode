@@ -27,7 +27,7 @@ jobs:
         extended: true
 
     - name: Setup Outline
-      run: go get github.com/remotely-works/outline
+      run: go get github.com/mcuadros/outline
 
     - name: Hugo Build
       run: make hugo-build
